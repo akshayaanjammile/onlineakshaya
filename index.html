@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshaya Services | Gateway to Citizen e-Governance Services, Kerala</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome Icons for crisp government/service iconography -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            akshaya: {
+              navy: '#0B2545',
+              blue: '#134074',
+              sky: '#1D63B8',
+              green: '#0F766E',
+              emerald: '#15803D',
+              gold: '#D97706',
+              light: '#F4F7FB',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* Subtle smooth transitions and custom scrollbars */
+    html {
+      scroll-behavior: smooth;
+    }
+    .service-card {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-2px);
+    }
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .view-animate {
+      animation: fadeSlideIn 0.25s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-akshaya-light text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-akshaya-sky selection:text-white">
+
+  <!-- Top Official Government Strip -->
+  <div class="bg-akshaya-navy text-white text-xs py-1.5 px-4 border-b border-blue-900">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-medium tracking-wide text-blue-100">Government of Kerala • Citizen Service Delivery Portal</span>
+      </div>
+      <div class="flex items-center gap-4 text-blue-200">
+        <span class="hidden sm:inline"><i class="fa-solid fa-clock mr-1 text-amber-400"></i> Mon – Sat: 9:30 AM – 5:30 PM</span>
+        <button onclick="openEnquiryModal('General Citizen Helpdesk')" class="hover:text-white underline decoration-amber-400 underline-offset-2 font-medium">
+          <i class="fa-solid fa-headset mr-1"></i> Helpdesk
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSISTENT HEADER BAR (Visible on EVERY view/page: Left Akshaya Logo, Center Title, Right IT Mission Logo) -->
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+      <div class="grid grid-cols-2 md:grid-cols-[auto_1fr_auto] items-center gap-x-4 gap-y-3 sm:gap-x-6">
+
+        <!-- LEFT: Akshaya Kerala Official Logo (1.5x size, no border) -->
+        <a href="#home" onclick="navigateHome(event)" class="flex items-center gap-2.5 sm:gap-4 group focus:outline-none shrink-0 justify-self-start" title="അക്ഷയ കേന്ദ്രം Home">
+          <div class="w-[132px] h-[132px] sm:w-[168px] sm:h-[168px] flex items-center justify-center shrink-0">
+            <img src="data:image/png;base64,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" alt="Akshaya Logo" class="w-full h-full object-contain" />
+          </div>
+          <div class="hidden lg:inline-grid grid-cols-1 w-fit">
+            <span class="text-base sm:text-xl font-extrabold tracking-tight text-akshaya-navy leading-none whitespace-nowrap">
+              Akshaya e-Centre
+            </span>
+            <span id="ml-akshaya-label" class="text-base sm:text-xl font-extrabold tracking-tight text-akshaya-navy leading-none mt-1 block" style="font-family: 'Noto Sans Malayalam', 'Inter', sans-serif;">
+              അക്ഷയ കേന്ദ്രം
+            </span>
+          </div>
+          <script>
+            (function() {
+              const enEl = document.currentScript.previousElementSibling.querySelector('span:first-child');
+              const mlEl = document.getElementById('ml-akshaya-label');
+              function syncAkshayaLabelWidth() {
+                if (!enEl || !mlEl) return;
+                mlEl.style.transform = 'none';
+                mlEl.style.transformOrigin = 'left center';
+                mlEl.style.whiteSpace = 'nowrap';
+                const targetWidth = enEl.getBoundingClientRect().width;
+                const currentWidth = mlEl.getBoundingClientRect().width;
+                if (targetWidth > 0 && currentWidth > 0) {
+                  const scaleX = targetWidth / currentWidth;
+                  mlEl.style.transform = `scaleX(${scaleX.toFixed(4)})`;
+                }
+              }
+              window.addEventListener('resize', syncAkshayaLabelWidth);
+              if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(syncAkshayaLabelWidth);
+              }
+              syncAkshayaLabelWidth();
+            })();
+          </script>
+        </a>
+
+        <!-- CENTER: Main Portal Title & Subtitle -->
+        <div class="text-center px-1 min-w-0 col-span-2 md:col-span-1 order-last md:order-none">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-akshaya-navy tracking-tight">
+            Akshaya Services
+          </h1>
+          <p class="text-xs sm:text-sm md:text-base text-slate-500 font-medium mt-1">
+            Gateway to Citizen e-Governance Services, Kerala
+          </p>
+        </div>
+
+        <!-- RIGHT: Kerala State IT Mission Logo (no border) -->
+        <a href="#home" onclick="navigateHome(event)" class="flex items-center gap-3 group focus:outline-none shrink-0 text-right justify-self-end" title="Kerala State IT Mission">
+          <div class="hidden lg:flex flex-col items-end">
+            <span class="text-xs font-bold text-akshaya-navy leading-tight">
+              Kerala State
+            </span>
+            <span class="text-xs font-extrabold text-akshaya-sky leading-tight">
+              IT Mission
+            </span>
+            <span class="text-[10px] text-slate-500 font-medium">
+              Dept. of Electronics & IT
+            </span>
+          </div>
+          <div class="w-[88px] h-[88px] sm:w-[112px] sm:h-[112px] flex items-center justify-center shrink-0">
+            <img src="data:image/png;base64,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" alt="Kerala State IT Mission Logo" class="w-full h-full object-contain" />
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- BREADCRUMB NAVIGATION BAR (Updates dynamically across all 3 tree levels) -->
+    </header>
+  <nav aria-label="Breadcrumb" class="sticky top-0 z-30 bg-white/90 backdrop-blur-sm border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-2">
+        <ol id="breadcrumb-container" class="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-600">
+          <!-- Populated dynamically via JS -->
+        </ol>
+        <div id="header-back-btn-container" class="shrink-0">
+          <!-- Populated dynamically when inside Level 2 or Level 3 -->
+        </div>
+      </div>
+    </nav>
+
+  <!-- MAIN CONTENT WORKSPACE (Renders Level 1, Level 2, or Level 3 dynamically) -->
+  <main id="app-root" class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8">
+    <!-- Dynamic View Injected Here -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
+      <div class="inline-flex items-center gap-2 text-akshaya-navy font-bold text-base">
+        <i class="fa-solid fa-building-columns text-akshaya-gold"></i>
+        <span>Akshaya Citizen Service Centre</span>
+      </div>
+      <p class="text-xs text-slate-500 mt-2 max-w-xl mx-auto leading-relaxed">
+        Authorized e-Governance facilitation centre under Kerala State IT Mission, delivering transparent, efficient digital public services to citizens.
+      </p>
+      <div class="flex flex-wrap justify-center gap-2 mt-4">
+        <span class="px-3 py-1 rounded-full bg-blue-50 text-xs font-medium text-akshaya-blue">e-District Kerala</span>
+        <span class="px-3 py-1 rounded-full bg-emerald-50 text-xs font-medium text-akshaya-emerald">Digital India</span>
+        <span class="px-3 py-1 rounded-full bg-amber-50 text-xs font-medium text-amber-700">KSITM Initiative</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ENQUIRY / SERVICE REQUEST MODAL (Replaces alert/confirm with clean UI) -->
+  <div id="enquiry-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[92vh] overflow-y-auto border border-slate-200 view-animate">
+      <div class="bg-gradient-to-r from-akshaya-navy to-akshaya-blue px-5 py-4 flex items-center justify-between text-white">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-file-signature text-amber-400"></i>
+          <h3 class="font-bold text-base">Akshaya Centre Service Request</h3>
+        </div>
+        <button onclick="closeEnquiryModal()" class="text-blue-200 hover:text-white p-1 rounded-lg transition-colors" aria-label="Close modal">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <form id="enquiry-form" onsubmit="handleEnquirySubmit(event)" class="p-5 space-y-4">
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Selected Service</label>
+          <input type="text" id="modal-service-name" readonly class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 border border-slate-200 text-sm font-semibold text-akshaya-navy" />
+        </div>
+        <div>
+          <label for="citizen-name" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Applicant Full Name *</label>
+          <input type="text" id="citizen-name" required placeholder="Enter your name" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-akshaya-sky focus:border-akshaya-sky outline-none" />
+        </div>
+        <div>
+          <label for="citizen-phone" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Mobile Number (WhatsApp / SMS) *</label>
+          <input type="tel" id="citizen-phone" required pattern="[0-9]{10}" placeholder="10-digit mobile number" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-akshaya-sky focus:border-akshaya-sky outline-none" />
+        </div>
+        <div>
+          <label for="citizen-district" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">District *</label>
+          <select id="citizen-district" required onchange="onDistrictChange()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:ring-2 focus:ring-akshaya-sky focus:border-akshaya-sky outline-none"></select>
+        </div>
+        <div>
+          <label for="citizen-centre" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Akshaya Centre *</label>
+          <select id="citizen-centre" required disabled class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:ring-2 focus:ring-akshaya-sky focus:border-akshaya-sky outline-none disabled:bg-slate-100 disabled:text-slate-400"></select>
+        </div>
+        <div>
+          <label for="citizen-notes" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Additional Details / Query <span class="normal-case font-normal text-slate-400">(sent to the centre on WhatsApp)</span></label>
+          <textarea id="citizen-notes" rows="2" placeholder="Mention required documents check or preferred visit time..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-akshaya-sky focus:border-akshaya-sky outline-none"></textarea>
+        </div>
+        <div id="enquiry-feedback" class="hidden rounded-xl p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium"></div>
+        <div class="flex items-center justify-end gap-2.5 pt-2">
+          <button type="button" onclick="closeEnquiryModal()" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-sm font-semibold hover:bg-slate-50 transition-colors">
+            Cancel
+          </button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-akshaya-emerald hover:bg-emerald-800 text-white text-sm font-semibold shadow-sm transition-colors flex items-center gap-2">
+            <i class="fa-brands fa-whatsapp text-base"></i> Send on WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- APPLICATION DATA & TREE NAVIGATION ENGINE -->
+  <script>
+    /**
+     * ============================================================================
+     * MODULAR 3-LEVEL TREE ARCHITECTURE: SERVICES_TREE
+     * ============================================================================
+     * Level 1: Parent Services (26 Core Akshaya Categories)
+     * Level 2: Child Services (`children` array inside each parent)
+     * Level 3: Grandchild / Leaf Details (and extensible `subServices` array for
+     *          future deeper tree branches provided in subsequent prompts).
+     */
+    const SERVICES_TREE = [
+      {
+        id: 1,
+        slug: "adhar-card-services",
+        title: "Adhar Card Services",
+        icon: "fa-fingerprint",
+        category: "Identity & UIDAI",
+        description: "UIDAI Aadhaar enrollment, demographic & biometric updates, e-Aadhaar download, and PVC card services.",
+        children: [
+          {
+            slug: "new-aadhaar-enrollment",
+            title: "New Aadhaar Enrollment",
+            summary: "Fresh UIDAI Aadhaar registration for adults and children (Baal Aadhaar) with biometric & demographic capture.",
+            documents: ["Proof of Identity (POI) - Passport / Voter ID / PAN", "Proof of Address (POA) - Ration Card / Utility Bill", "Birth Certificate (Mandatory for children below 5 years)"],
+            timeline: "15 – 30 Working Days",
+            fee: "Free (Govt. Mandated)",
+            portalUrl: "https://uidai.gov.in",
+            subServices: []
+          },
+          {
+            slug: "address-demographic-update",
+            title: "Address / Demographic Update",
+            summary: "Update Name, Address, Date of Birth, Gender, Mobile Number, or Email ID linked with your Aadhaar.",
+            documents: ["Original Aadhaar Card", "Valid Address Proof (Ration Card, Voter ID, Bank Passbook, Passport)", "Gazette Notification (for major name changes)"],
+            timeline: "7 – 15 Working Days",
+            fee: "₹50 (Inclusive of GST)",
+            portalUrl: "https://myaadhaar.uidai.gov.in",
+            subServices: []
+          },
+          {
+            slug: "biometric-update",
+            title: "Biometric Update (Mandatory / Voluntary)",
+            summary: "Update photograph, fingerprints, and iris scan (mandatory at ages 5 and 15).",
+            documents: ["Original Aadhaar Card", "Applicant presence mandatory for live biometric capture"],
+            timeline: "7 – 15 Working Days",
+            fee: "₹100 (Free for mandatory age 5 & 15 updates)",
+            portalUrl: "https://uidai.gov.in",
+            subServices: []
+          },
+          {
+            slug: "download-e-aadhaar",
+            title: "Download & Print e-Aadhaar",
+            summary: "Instant OTP-based digital Aadhaar download and high-quality laminated color card printing.",
+            documents: ["Aadhaar Number or 28-digit Enrollment ID", "Registered Mobile Number for OTP verification"],
+            timeline: "Instant",
+            fee: "₹30 (Print & Lamination)",
+            portalUrl: "https://myaadhaar.uidai.gov.in",
+            subServices: []
+          },
+          {
+            slug: "pvc-card-order",
+            title: "Aadhaar PVC Card Order",
+            summary: "Order durable, wallet-sized UIDAI PVC Aadhaar card with holographic security features.",
+            documents: ["Aadhaar Number", "Mobile Number for OTP"],
+            timeline: "7 – 14 Working Days via Speed Post",
+            fee: "₹50 (UIDAI Fee) + Service Charge",
+            portalUrl: "https://myaadhaar.uidai.gov.in",
+            subServices: []
+          },
+          {
+            slug: "aadhaar-pan-linking",
+            title: "Aadhaar – PAN Linking Status & Request",
+            summary: "Verify Aadhaar-PAN link status and submit linking request on the Income Tax e-Filing portal.",
+            documents: ["PAN Card", "Aadhaar Card", "Active Mobile Number"],
+            timeline: "3 – 5 Working Days",
+            fee: "As per Income Tax Dept. Norms",
+            portalUrl: "https://www.incometax.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 2,
+        slug: "ration-card-services",
+        title: "Ration Card Services",
+        icon: "fa-wheat-awn",
+        category: "Civil Supplies",
+        description: "Kerala Civil Supplies (e-PDS) new ration card, member addition/deletion, address transfer, and card category conversion.",
+        children: [
+          {
+            slug: "new-ration-card",
+            title: "New Ration Card Application",
+            summary: "Apply for a new Kerala Civil Supplies Ration Card for newly formed families.",
+            documents: ["Aadhaar Cards of all family members", "Ownership / Residential Certificate from Local Body", "Income Certificate", "Non-Inclusion Certificate from previous card"],
+            timeline: "15 – 30 Working Days",
+            fee: "₹65 – ₹100",
+            portalUrl: "https://ecitizen.civilsupplieskerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "add-remove-member",
+            title: "Add / Remove Family Member",
+            summary: "Include newborn children or newly married spouse, or delete members due to marriage/demise.",
+            documents: ["Existing Ration Card", "Aadhaar & Birth/Marriage Certificate (for addition)", "Death/Deletion Certificate (for removal)"],
+            timeline: "10 – 20 Working Days",
+            fee: "₹50 – ₹80",
+            portalUrl: "https://ecitizen.civilsupplieskerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "ration-card-transfer",
+            title: "Address Change & Taluk Transfer",
+            summary: "Transfer ration card to a new residence within the same or different Taluk Supply Office.",
+            documents: ["Original Ration Card", "New Residential Certificate / Electricity Bill", "Aadhaar of Head of Family"],
+            timeline: "10 – 15 Working Days",
+            fee: "₹50 – ₹80",
+            portalUrl: "https://ecitizen.civilsupplieskerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "duplicate-ration-card",
+            title: "Duplicate / e-Ration Card Print",
+            summary: "Download digital e-Ration card PDF or apply for duplicate card in case of loss or damage.",
+            documents: ["Ration Card Number", "Registered Mobile Number"],
+            timeline: "Instant (e-Card) / 10 Days (Duplicate)",
+            fee: "₹40 – ₹75",
+            portalUrl: "https://ecitizen.civilsupplieskerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "priority-card-conversion",
+            title: "Priority / Non-Priority Card Conversion",
+            summary: "Apply for conversion between APL (White/Blue) and BPL/AAY (Pink/Yellow) categories.",
+            documents: ["Existing Ration Card", "Latest Village Office Income Certificate", "Medical/Disability Certificate (if applicable)"],
+            timeline: "30 – 45 Working Days",
+            fee: "₹60",
+            portalUrl: "https://ecitizen.civilsupplieskerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 3,
+        slug: "pan-card-services",
+        title: "PAN Card Services",
+        icon: "fa-id-card",
+        category: "Taxation & Finance",
+        description: "NSDL & UTIITSL new PAN card (Form 49A), corrections, reprint, and instant e-PAN generation.",
+        children: [
+          {
+            slug: "new-pan-card",
+            title: "New PAN Card Application (Form 49A)",
+            summary: "Apply for a new Permanent Account Number for individuals, minors, firms, or trusts.",
+            documents: ["Aadhaar Card (with linked mobile number)", "2 Passport Size Photographs", "Signature specimen"],
+            timeline: "7 – 15 Working Days (e-PAN in 3 days)",
+            fee: "₹107 (Govt. Fee) + Service Charge",
+            portalUrl: "https://www.onlineservices.nsdl.com",
+            subServices: []
+          },
+          {
+            slug: "pan-correction-update",
+            title: "PAN Card Correction / Update",
+            summary: "Correct spelling in Name, Father's Name, Date of Birth, Photograph, or Signature on existing PAN.",
+            documents: ["Existing PAN Copy", "Aadhaar Card", "Proof supporting correction (SSLC / Birth Certificate)"],
+            timeline: "10 – 15 Working Days",
+            fee: "₹107 (Govt. Fee) + Service Charge",
+            portalUrl: "https://www.onlineservices.nsdl.com",
+            subServices: []
+          },
+          {
+            slug: "reprint-lost-pan",
+            title: "Reprint Lost / Damaged PAN Card",
+            summary: "Request a physical duplicate PAN card dispatched to your registered communication address.",
+            documents: ["PAN Number", "Aadhaar Card"],
+            timeline: "7 – 12 Working Days",
+            fee: "₹50 (Govt. Fee) + Service Charge",
+            portalUrl: "https://www.onlineservices.nsdl.com",
+            subServices: []
+          },
+          {
+            slug: "instant-e-pan",
+            title: "Instant e-PAN Download",
+            summary: "Generate and download digitally signed e-PAN card using Aadhaar e-KYC.",
+            documents: ["Aadhaar Card with active mobile OTP"],
+            timeline: "Same Day / 24 Hours",
+            fee: "₹50",
+            portalUrl: "https://www.incometax.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 4,
+        slug: "passport-services",
+        title: "Passport Services",
+        icon: "fa-passport",
+        category: "External Affairs",
+        description: "Passport Seva online application, PSK appointment booking, renewal/re-issue, Tatkaal, and PCC.",
+        children: [
+          {
+            slug: "fresh-passport",
+            title: "Fresh Passport Application & Appointment",
+            summary: "Complete online Passport Seva form submission and book nearest Passport Seva Kendra (PSK) slot.",
+            documents: ["Aadhaar Card", "SSLC Book / Birth Certificate", "Voter ID / Bank Passbook"],
+            timeline: "15 – 30 Days post PSK visit",
+            fee: "₹1,500 (36 Pages) + Service Charge",
+            portalUrl: "https://www.passportindia.gov.in",
+            subServices: []
+          },
+          {
+            slug: "passport-renewal",
+            title: "Passport Renewal / Re-issue",
+            summary: "Renew expired or soon-to-expire passport, or update personal particulars and address.",
+            documents: ["Original Old Passport", "Aadhaar Card", "Address Proof (if changed)"],
+            timeline: "15 – 25 Days",
+            fee: "₹1,500 (Normal) / ₹3,500 (Tatkaal)",
+            portalUrl: "https://www.passportindia.gov.in",
+            subServices: []
+          },
+          {
+            slug: "tatkaal-passport",
+            title: "Tatkaal Urgent Passport Service",
+            summary: "Expedited passport processing for urgent international travel requirements.",
+            documents: ["Aadhaar Card", "Any two additional IDs (Voter ID, PAN, Driving License, Birth Certificate)"],
+            timeline: "3 – 7 Working Days",
+            fee: "₹3,500 (Govt. Fee) + Service Charge",
+            portalUrl: "https://www.passportindia.gov.in",
+            subServices: []
+          },
+          {
+            slug: "police-clearance-certificate",
+            title: "Police Clearance Certificate (PCC)",
+            summary: "Apply for Passport PCC required for overseas employment, migration, or long-term visas.",
+            documents: ["Valid Passport", "Aadhaar Card", "Visa / Employment Offer Copy (if available)"],
+            timeline: "10 – 20 Days",
+            fee: "₹500 (Govt. Fee) + Service Charge",
+            portalUrl: "https://www.passportindia.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 5,
+        slug: "voter-id-card-services",
+        title: "Voter ID Card Services",
+        icon: "fa-check-to-slot",
+        category: "Election Commission",
+        description: "NVSP / Voters' Service Portal registration (Form 6), corrections (Form 8), shifting, and e-EPIC download.",
+        children: [
+          {
+            slug: "new-voter-registration",
+            title: "New Voter ID Registration (Form 6)",
+            summary: "Enroll first-time voters aged 18+ into the Kerala Electoral Roll.",
+            documents: ["Passport Size Photo", "Age Proof (SSLC / Birth Certificate / Aadhaar)", "Address Proof (Ration Card / Aadhaar / Utility Bill)"],
+            timeline: "15 – 30 Working Days",
+            fee: "₹30 (Service Charge)",
+            portalUrl: "https://voters.eci.gov.in",
+            subServices: []
+          },
+          {
+            slug: "voter-id-correction",
+            title: "Voter ID Correction & Shifting (Form 8)",
+            summary: "Correct name, age, photo, relation name, or shift constituency within/outside district.",
+            documents: ["Existing EPIC Number", "Aadhaar Card", "Supporting Proof for Correction/Address"],
+            timeline: "15 – 25 Working Days",
+            fee: "₹30 (Service Charge)",
+            portalUrl: "https://voters.eci.gov.in",
+            subServices: []
+          },
+          {
+            slug: "download-e-epic",
+            title: "Download Digital e-EPIC Card",
+            summary: "Instant download and PVC printing of official digital Voter ID card.",
+            documents: ["EPIC Number", "Mobile Number linked with Voter ID"],
+            timeline: "Instant",
+            fee: "₹30",
+            portalUrl: "https://voters.eci.gov.in",
+            subServices: []
+          },
+          {
+            slug: "voter-aadhaar-linking",
+            title: "Voter ID – Aadhaar Linking (Form 6B)",
+            summary: "Link your EPIC number with Aadhaar for electoral roll authentication.",
+            documents: ["Voter ID Card", "Aadhaar Card"],
+            timeline: "3 – 7 Working Days",
+            fee: "₹25",
+            portalUrl: "https://voters.eci.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 6,
+        slug: "driving-license-services",
+        title: "Driving License Services",
+        icon: "fa-id-card-clip",
+        category: "Motor Vehicles (Parivahan)",
+        description: "Kerala MVD / Sarathi Parivahan Learner's License, Driving Test slots, Renewal, IDP, and Address Change.",
+        children: [
+          {
+            slug: "learners-license",
+            title: "Learner's License (LL) Application",
+            summary: "Online application, slot booking, and mock test assistance for Two-Wheeler / LMV Learner's License.",
+            documents: ["Aadhaar Card", "SSLC Certificate (Age & Education Proof)", "Self-Declaration Form 1", "Passport Photo & Signature"],
+            timeline: "3 – 7 Working Days",
+            fee: "₹200 – ₹350 (Govt. Fee) + Service Charge",
+            portalUrl: "https://sarathi.parivahan.gov.in",
+            subServices: []
+          },
+          {
+            slug: "permanent-driving-license",
+            title: "New Driving License & Test Slot",
+            summary: "Book Kerala RTO driving test slot after completing 30 days of Learner's License.",
+            documents: ["Valid Learner's License", "Aadhaar Card", "Form 1A Medical Certificate (if applicable)"],
+            timeline: "As per RTO Test Slot Availability",
+            fee: "₹700 – ₹1,000 (Govt. Fee) + Service Charge",
+            portalUrl: "https://sarathi.parivahan.gov.in",
+            subServices: []
+          },
+          {
+            slug: "dl-renewal",
+            title: "Driving License Renewal",
+            summary: "Renew expired or expiring Kerala Driving License with updated biometrics and digital card.",
+            documents: ["Original Driving License", "Aadhaar Card", "Form 1A Medical Certificate (Mandatory above age 40)"],
+            timeline: "7 – 15 Working Days",
+            fee: "₹400 + Service Charge",
+            portalUrl: "https://sarathi.parivahan.gov.in",
+            subServices: []
+          },
+          {
+            slug: "international-driving-permit",
+            title: "International Driving Permit (IDP)",
+            summary: "Apply for International Driving License valid across signatory countries.",
+            documents: ["Valid Indian Driving License", "Valid Passport & Visa/Ticket", "Medical Certificate Form 1A"],
+            timeline: "7 – 10 Working Days",
+            fee: "₹1,000 (Govt. Fee) + Service Charge",
+            portalUrl: "https://sarathi.parivahan.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 7,
+        slug: "vehicle-registration-certificate-services",
+        title: "Vehicle Registration Certificate Services",
+        icon: "fa-car",
+        category: "Motor Vehicles (Vahan)",
+        description: "Vahan Parivahan RC ownership transfer, hypothecation termination, duplicate RC, fitness & road tax payment.",
+        children: [
+          {
+            slug: "rc-ownership-transfer",
+            title: "RC Ownership Transfer (Form 29 & 30)",
+            summary: "Transfer vehicle Registration Certificate from seller to buyer across Kerala RTOs.",
+            documents: ["Original RC Book", "Valid Insurance & PUCC", "Aadhaar & Photo of Seller & Buyer", "Form 29 & Form 30"],
+            timeline: "10 – 20 Working Days",
+            fee: "As per Vehicle Class + Service Charge",
+            portalUrl: "https://vahan.parivahan.gov.in",
+            subServices: []
+          },
+          {
+            slug: "hypothecation-termination",
+            title: "Hypothecation Removal (Loan Closure)",
+            summary: "Remove bank/finance hypothecation endorsement from RC after full loan repayment.",
+            documents: ["Original RC", "Bank NOC & Form 35 (2 Copies)", "Valid Insurance & PUCC", "Aadhaar Card"],
+            timeline: "7 – 15 Working Days",
+            fee: "₹200 – ₹400 + Service Charge",
+            portalUrl: "https://vahan.parivahan.gov.in",
+            subServices: []
+          },
+          {
+            slug: "duplicate-rc",
+            title: "Duplicate RC Application",
+            summary: "Obtain duplicate Registration Certificate in case the original RC is lost, torn, or damaged.",
+            documents: ["Police Missing Certificate / Damaged RC", "Valid Insurance & PUCC", "Aadhaar Card"],
+            timeline: "10 – 15 Working Days",
+            fee: "₹300 – ₹500 + Service Charge",
+            portalUrl: "https://vahan.parivahan.gov.in",
+            subServices: []
+          },
+          {
+            slug: "road-tax-challan-payment",
+            title: "Kerala Road Tax & e-Challan Payment",
+            summary: "Pay quarterly/annual motor vehicle tax and clear MVD/Police AI camera e-Challans.",
+            documents: ["Vehicle Registration Number", "Chassis Number (Last 5 digits)"],
+            timeline: "Instant Receipt",
+            fee: "Actual Tax/Fine + ₹30 Service Charge",
+            portalUrl: "https://vahan.parivahan.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 8,
+        slug: "village-office-services",
+        title: "Village Office Services",
+        icon: "fa-landmark",
+        category: "Revenue & e-District",
+        description: "Kerala e-District revenue certificates, land tax payment, Thandapper, and RoR certificates.",
+        children: [
+          {
+            slug: "income-certificate",
+            title: "Income Certificate",
+            summary: "Official annual family income certificate issued by Village Officer for scholarships, welfare & reservations.",
+            documents: ["Aadhaar Card", "Ration Card", "Salary Slip / Self-Declaration of Income", "Land Tax Receipt"],
+            timeline: "5 – 7 Working Days",
+            fee: "₹45 (e-District Prescribed Fee)",
+            portalUrl: "https://edistrict.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "caste-community-certificate",
+            title: "Caste / Community Certificate",
+            summary: "Official SC/ST/OBC/General community certificate for educational and employment purposes.",
+            documents: ["Aadhaar Card", "Ration Card", "SSLC Book / School Admission Register showing Caste", "Parents' Caste Certificate"],
+            timeline: "5 – 10 Working Days",
+            fee: "₹45 (e-District Prescribed Fee)",
+            portalUrl: "https://edistrict.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "nativity-certificate",
+            title: "Nativity & Domicile Certificate",
+            summary: "Proof of birth and permanent residence in Kerala issued through e-District.",
+            documents: ["Aadhaar Card", "Birth Certificate / SSLC Book", "Ration Card"],
+            timeline: "5 – 7 Working Days",
+            fee: "₹45 (e-District Prescribed Fee)",
+            portalUrl: "https://edistrict.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "possession-non-attachment-certificate",
+            title: "Possession & Non-Attachment Certificate",
+            summary: "Certifies lawful possession of land property for bank loans, building permits, and legal needs.",
+            documents: ["Latest Land Tax Receipt", "Title Deed (Aadharam) Copy", "Aadhaar Card"],
+            timeline: "7 – 10 Working Days",
+            fee: "₹45 (e-District Prescribed Fee)",
+            portalUrl: "https://edistrict.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "non-creamy-layer-certificate",
+            title: "Non-Creamy Layer (NCL) & EWS Certificate",
+            summary: "State & Central OBC Non-Creamy Layer and Economically Weaker Section certificates.",
+            documents: ["Income Certificate", "Caste Certificate", "Ration Card & Aadhaar", "Parents' Service Details (if Govt. employees)"],
+            timeline: "7 – 12 Working Days",
+            fee: "₹45 (e-District Prescribed Fee)",
+            portalUrl: "https://edistrict.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "location-sketch-land-tax",
+            title: "Location Sketch, RoR & Online Land Tax",
+            summary: "Apply for Village Officer Location Sketch, Record of Rights (RoR), and pay annual Bhunikshathi Land Tax.",
+            documents: ["Previous Land Tax Receipt", "Title Deed Copy", "Aadhaar Card"],
+            timeline: "Instant (Tax) / 7 Days (Sketch & RoR)",
+            fee: "₹45 + Actual Land Tax",
+            portalUrl: "https://www.revenue.kerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 9,
+        slug: "panchayat-office-services",
+        title: "Panchayat Office Services",
+        icon: "fa-city",
+        category: "Local Self Government (LSGD)",
+        description: "K-SMART / Sevana Civil Registration birth, death & marriage certificates, building tax, and trade licenses.",
+        children: [
+          {
+            slug: "birth-death-certificate",
+            title: "Birth & Death Certificate (Sevana / K-SMART)",
+            summary: "Download digitally signed Birth/Death certificates or apply for name inclusion & corrections.",
+            documents: ["Hospital Discharge Summary / Registration Number", "Parents' Aadhaar & Marriage Certificate", "Ration Card"],
+            timeline: "Instant (Registered) / 7 – 15 Days (Corrections)",
+            fee: "₹40 – ₹60",
+            portalUrl: "https://ksmart.lsgkerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "marriage-registration",
+            title: "Common Marriage Registration Certificate",
+            summary: "Register marriage under Kerala Registration of Marriages (Common) Rules via K-SMART.",
+            documents: ["Marriage Invitation / Religious Certificate", "Age & Address Proof of Bride & Groom", "2 Witnesses Aadhaar", "Joint Photograph"],
+            timeline: "7 – 15 Working Days",
+            fee: "₹100 (Statutory) + Service Charge",
+            portalUrl: "https://ksmart.lsgkerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "building-tax-ownership",
+            title: "Property / Building Tax & Ownership Certificate",
+            summary: "Pay Grama Panchayat / Municipality building tax online and download Ownership Certificate.",
+            documents: ["Building Number & Ward Details", "Previous Tax Receipt", "Aadhaar Card"],
+            timeline: "Instant (Tax) / 5 Days (Ownership Certificate)",
+            fee: "Actual Tax + ₹40 Service Charge",
+            portalUrl: "https://ksmart.lsgkerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "d-and-o-trade-license",
+            title: "D&O / Trade License (New & Renewal)",
+            summary: "Obtain Local Body Trade License for shops, commercial establishments, and small enterprises.",
+            documents: ["Building Tax Receipt", "Rent Agreement / Consent Letter", "Aadhaar & Photo of Applicant"],
+            timeline: "7 – 15 Working Days",
+            fee: "As per LSGD Slab + Service Charge",
+            portalUrl: "https://ksmart.lsgkerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 10,
+        slug: "register-office-services",
+        title: "Register Office Services",
+        icon: "fa-file-contract",
+        category: "Registration Department",
+        description: "Kerala Registration Department Encumbrance Certificate (EC), Certified Copy of Deed, and e-Stamp challan.",
+        children: [
+          {
+            slug: "encumbrance-certificate",
+            title: "Encumbrance Certificate (EC / Kudikadam)",
+            summary: "Apply online for official Sub-Registrar Encumbrance Certificate verifying property transaction history.",
+            documents: ["Land Tax Receipt / Title Deed Details", "Survey Number, Sub-Division & Village Name", "Aadhaar Card"],
+            timeline: "3 – 7 Working Days",
+            fee: "₹100+ (Based on Search Years) + Service Charge",
+            portalUrl: "https://pearl.registration.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "certified-copy-of-deed",
+            title: "Certified Copy of Registered Deed",
+            summary: "Obtain digitally signed certified copy of registered land deeds (Aadharam) from Sub-Registrar Office.",
+            documents: ["Document Number & Year of Registration", "Sub-Registrar Office Name", "Aadhaar Card"],
+            timeline: "3 – 7 Working Days",
+            fee: "As per Dept. Fee + Service Charge",
+            portalUrl: "https://pearl.registration.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "fair-value-e-stamp",
+            title: "Land Fair Value Check & e-Stamp Challan",
+            summary: "Check official Kerala Government land fair value and generate e-Stamp / registration fee challans.",
+            documents: ["District, Taluk, Village & Survey Number", "Party Details"],
+            timeline: "Instant",
+            fee: "₹40 (Service Charge)",
+            portalUrl: "https://igr.kerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 11,
+        slug: "pension-services",
+        title: "Pension Services",
+        icon: "fa-hand-holding-heart",
+        category: "Social Security & Welfare",
+        description: "Kerala Social Security Pensions (Sevana Pension), Jeevan Pramaan Digital Life Certificate, and Welfare Board pensions.",
+        children: [
+          {
+            slug: "kerala-social-security-pension",
+            title: "Social Security Pension (Old Age / Widow / Disability)",
+            summary: "New application for Indira Gandhi National Old Age Pension, Widow Pension, and Differently Abled Pension.",
+            documents: ["Aadhaar Card", "Ration Card", "Income Certificate", "Bank Passbook", "Age/Widow/Medical Board Certificate"],
+            timeline: "30 – 45 Working Days",
+            fee: "₹45 (Service Charge)",
+            portalUrl: "https://welfarepension.lsgkerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "jeevan-pramaan-life-certificate",
+            title: "Jeevan Pramaan (Biometric Life Certificate)",
+            summary: "Instant Aadhaar-based biometric Digital Life Certificate generation for Central, State, EPF & Service pensioners.",
+            documents: ["Aadhaar Card", "PPO Number (Pension Payment Order)", "Bank Account Details & Mobile Number"],
+            timeline: "Instant Certificate Generation",
+            fee: "₹50",
+            portalUrl: "https://jeevanpramaan.gov.in",
+            subServices: []
+          },
+          {
+            slug: "pension-musterring-ekyc",
+            title: "Annual Pension Biometric Mustering",
+            summary: "Mandatory annual biometric authentication for Kerala Social Security Pension beneficiaries.",
+            documents: ["Aadhaar Card", "Pension ID / Beneficiary Number"],
+            timeline: "Instant",
+            fee: "₹30 (Govt. Approved Fee)",
+            portalUrl: "https://welfarepension.lsgkerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 12,
+        slug: "scholarship-services",
+        title: "Scholarship Services",
+        icon: "fa-graduation-cap",
+        category: "Education & Student Welfare",
+        description: "NSP, e-Grantz Kerala, Minority (DCE), Vidyasamunnathi, and merit-cum-means student scholarships.",
+        children: [
+          {
+            slug: "e-grantz-kerala",
+            title: "e-Grantz Kerala (SC / ST / OBC / OEC)",
+            summary: "Post-matric educational fee concession and stipend portal application for Kerala students.",
+            documents: ["Aadhaar Card", "Income & Caste Certificate", "SSLC & Previous Marklist", "Student Bank Passbook"],
+            timeline: "As per Academic Window",
+            fee: "₹50 (Service Charge)",
+            portalUrl: "https://egrantz.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "national-scholarship-portal",
+            title: "National Scholarship Portal (NSP) & OTR",
+            summary: "One-Time Registration (OTR) and Central Pre-Matric / Post-Matric / Merit-cum-Means scholarships.",
+            documents: ["Aadhaar Card", "Income Certificate", "Bonafide Student Certificate", "Bank Passbook"],
+            timeline: "As per NSP Schedule",
+            fee: "₹60 (Service Charge)",
+            portalUrl: "https://scholarships.gov.in",
+            subServices: []
+          },
+          {
+            slug: "minority-dce-scholarships",
+            title: "Minority & DCE Kerala Scholarships",
+            summary: "CH Muhammed Koya, Mother Teresa, Suvarna Jubilee, and Vidyasamunnathi scholarship filings.",
+            documents: ["Aadhaar & Ration Card", "Income & Minority/Community Certificate", "Previous Exam Marksheet", "Bank Passbook"],
+            timeline: "As per DCE Notification",
+            fee: "₹50 (Service Charge)",
+            portalUrl: "https://scholarship.kshec.kerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 13,
+        slug: "plus-one-admission",
+        title: "Plus One Admission",
+        icon: "fa-school",
+        category: "Higher Secondary (HSCAP)",
+        description: "Kerala DHSE Single Window (HSCAP) Plus One online application, option registration, and allotment checks.",
+        children: [
+          {
+            slug: "hscap-single-window-application",
+            title: "HSCAP Single Window Online Application",
+            summary: "Complete Kerala Higher Secondary (+1) Single Window merit quota online registration and school/course option entry.",
+            documents: ["SSLC Register Number & Marklist", "Aadhaar Card", "Caste / Non-Creamy Layer / EWS Certificate (if applicable)", "Grace Mark Certificates (NCC/NSS/Sports)"],
+            timeline: "As per DHSE Admission Calendar",
+            fee: "₹50 (Service Charge)",
+            portalUrl: "https://hscap.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "vhse-iti-polytechnic-admission",
+            title: "VHSE, ITI & Polytechnic Diploma Admission",
+            summary: "Online admission filings for Vocational Higher Secondary (VHSE), Govt/Private ITIs, and Polytechnic colleges.",
+            documents: ["SSLC Certificate", "Aadhaar Card", "Income & Caste Certificate"],
+            timeline: "As per Admission Window",
+            fee: "₹50 + Actual Portal Fee",
+            portalUrl: "https://polyadmission.org",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 14,
+        slug: "college-admission",
+        title: "College Admission",
+        icon: "fa-university",
+        category: "Higher Education",
+        description: "University CAP UG/PG registrations (Calicut, MG, Kerala, Kannur), KEAM, CUET, and entrance portals.",
+        children: [
+          {
+            slug: "university-ug-pg-cap",
+            title: "University Centralized Allotment (UG / PG CAP)",
+            summary: "Online admission registration for Kerala, MG, Calicut, and Kannur University degree & PG courses.",
+            documents: ["SSLC & Plus Two / Degree Marklists", "Aadhaar Card", "Passport Photo & Signature", "Community / Income / EWS Certificate"],
+            timeline: "As per University Schedule",
+            fee: "₹60 + University Registration Fee",
+            portalUrl: "https://admission.uoc.ac.in",
+            subServices: []
+          },
+          {
+            slug: "keam-entrance-registration",
+            title: "KEAM Engineering / Pharmacy / Medical Entrance",
+            summary: "CEE Kerala KEAM online application, document upload, and centralized option registration.",
+            documents: ["SSLC Certificate", "Plus Two Hall Ticket / Marksheet", "Nativity & Income/NCL Certificate", "Photo & Signature"],
+            timeline: "As per CEE Kerala Notification",
+            fee: "₹70 + CEE Application Fee",
+            portalUrl: "https://cee.kerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 15,
+        slug: "employment-exchange-services",
+        title: "Employment Exchange Services",
+        icon: "fa-briefcase",
+        category: "Employment Department",
+        description: "Kerala Employment Exchange new registration, qualification addition, seniority renewal, and unemployment allowance.",
+        children: [
+          {
+            slug: "new-employment-registration",
+            title: "New Employment Exchange Registration",
+            summary: "Register educational qualifications with Kerala Employment Department to establish employment seniority.",
+            documents: ["Aadhaar Card", "SSLC, Plus Two, Degree / Diploma Certificates", "Caste / Non-Creamy Layer Certificate", "Passport Photo"],
+            timeline: "3 – 7 Working Days",
+            fee: "₹50",
+            portalUrl: "https://eemployment.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "qualification-addition-renewal",
+            title: "Qualification Addition & Card Renewal",
+            summary: "Add newly acquired degrees/certificates or renew overdue employment registration.",
+            documents: ["Existing Employment Registration Card", "New Qualification Certificate", "Aadhaar Card"],
+            timeline: "Instant / 3 Working Days",
+            fee: "₹40",
+            portalUrl: "https://eemployment.kerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 16,
+        slug: "epf-office-services",
+        title: "EPF Office Services",
+        icon: "fa-piggy-bank",
+        category: "Provident Fund (EPFO)",
+        description: "EPFO UAN activation, KYC seeding, PF balance passbook, PF withdrawal (Form 31/19/10C), and transfer.",
+        children: [
+          {
+            slug: "uan-activation-kyc",
+            title: "UAN Activation & Bank/Aadhaar KYC",
+            summary: "Activate Universal Account Number (UAN) and link Aadhaar, PAN, and Bank account details.",
+            documents: ["UAN Number", "Aadhaar Card (Linked with Mobile)", "PAN Card & Bank Passbook"],
+            timeline: "Instant Activation / 7 Days KYC",
+            fee: "₹50",
+            portalUrl: "https://unifiedportal-mem.epfindia.gov.in",
+            subServices: []
+          },
+          {
+            slug: "epf-withdrawal-claim",
+            title: "EPF Advance / Final Withdrawal Claim",
+            summary: "Submit online EPF partial advance (Form 31) or full settlement & pension withdrawal (Form 19 & 10C).",
+            documents: ["Active UAN with Approved KYC", "Bank Cancelled Cheque / Passbook Copy", "Aadhaar Linked Mobile"],
+            timeline: "7 – 20 Working Days",
+            fee: "₹70",
+            portalUrl: "https://unifiedportal-mem.epfindia.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 17,
+        slug: "esic-office-services",
+        title: "ESIC Office Services",
+        icon: "fa-hospital-user",
+        category: "Employee Insurance",
+        description: "ESIC e-Pehchan card download, family member addition, dispensary change, and claim status.",
+        children: [
+          {
+            slug: "esic-pehchan-card",
+            title: "ESIC e-Pehchan Card & Family Update",
+            summary: "Download ESIC Pehchan card, link Aadhaar, and update dependent family member records.",
+            documents: ["ESIC Insurance Number (IP Number)", "Aadhaar Cards of Employee & Dependents", "Registered Mobile Number"],
+            timeline: "Instant / 5 Working Days",
+            fee: "₹40",
+            portalUrl: "https://www.esic.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 18,
+        slug: "fssai-services",
+        title: "FSSAI Services",
+        icon: "fa-utensils",
+        category: "Food Safety",
+        description: "FoSCoS FSSAI Basic Registration, State License, renewal, and certificate download for food businesses.",
+        children: [
+          {
+            slug: "fssai-basic-registration",
+            title: "FSSAI Basic Registration (Up to ₹12 Lakh Turnover)",
+            summary: "Mandatory Food Safety registration for small retailers, bakeries, caterers, and home food units.",
+            documents: ["Aadhaar Card & Photo of Proprietor", "Shop Ownership / Rent Agreement", "Business Name & Category Details"],
+            timeline: "7 – 15 Working Days",
+            fee: "₹100/Year (Govt. Fee) + Service Charge",
+            portalUrl: "https://foscos.fssai.gov.in",
+            subServices: []
+          },
+          {
+            slug: "fssai-renewal-modification",
+            title: "FSSAI License Renewal & Modification",
+            summary: "Renew expiring FSSAI registration or update business premises and food product categories.",
+            documents: ["Existing 14-digit FSSAI Number", "Aadhaar Card", "Updated Premises Proof (if changed)"],
+            timeline: "7 – 15 Working Days",
+            fee: "As per Tenure + Service Charge",
+            portalUrl: "https://foscos.fssai.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 19,
+        slug: "labour-office-services",
+        title: "Labour Office Services",
+        icon: "fa-helmet-safety",
+        category: "Labour & Welfare",
+        description: "e-Shram card registration, Kerala Shops & Commercial Establishments registration, and Welfare Board services.",
+        children: [
+          {
+            slug: "e-shram-card",
+            title: "e-Shram Card Registration (Unorganized Workers)",
+            summary: "National Database of Unorganized Workers (NDUW) registration with ₹2 Lakh accidental insurance cover.",
+            documents: ["Aadhaar Card (Linked with Mobile)", "Bank Passbook", "Nominee Details"],
+            timeline: "Instant Card Print",
+            fee: "₹30",
+            portalUrl: "https://eshram.gov.in",
+            subServices: []
+          },
+          {
+            slug: "shops-establishment-registration",
+            title: "Shops & Commercial Establishments Registration",
+            summary: "Mandatory Kerala Labour Department registration & annual renewal for shops and offices.",
+            documents: ["Employer Aadhaar & Photo", "Building Tax Receipt / Rent Deed", "Employee Details"],
+            timeline: "5 – 10 Working Days",
+            fee: "As per Staff Count + Service Charge",
+            portalUrl: "https://lc.kerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 20,
+        slug: "kseb-services",
+        title: "KSEB Services",
+        icon: "fa-bolt",
+        category: "Electricity Board",
+        description: "KSEB quick bill payment, new electricity connection, ownership change, tariff change, and solar net-metering.",
+        children: [
+          {
+            slug: "kseb-bill-payment",
+            title: "KSEB Electricity Bill Payment",
+            summary: "Instant online payment of domestic, commercial, and agricultural KSEB bills with official receipt.",
+            documents: ["13-digit KSEB Consumer Number"],
+            timeline: "Instant Receipt",
+            fee: "Bill Amount + ₹10–₹20 Service Charge",
+            portalUrl: "https://wss.kseb.in",
+            subServices: []
+          },
+          {
+            slug: "kseb-new-connection-ownership",
+            title: "New Service Connection & Ownership Change",
+            summary: "Apply online for new KSEB electricity connection or transfer consumer ownership.",
+            documents: ["Building Ownership Certificate / Tax Receipt", "Aadhaar Card", "Wiring Completion Certificate (for new connection)"],
+            timeline: "7 – 15 Working Days",
+            fee: "As per KSEB Estimate + Service Charge",
+            portalUrl: "https://wss.kseb.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 21,
+        slug: "kwa-services",
+        title: "KWA Services",
+        icon: "fa-faucet-drip",
+        category: "Kerala Water Authority",
+        description: "Kerala Water Authority (e-Abacus) water bill payment, new domestic/non-domestic connection, and disconnection.",
+        children: [
+          {
+            slug: "kwa-water-bill-payment",
+            title: "KWA Water Bill Online Payment",
+            summary: "Quick payment of Kerala Water Authority bi-monthly water bills with instant confirmation.",
+            documents: ["KWA Consumer Number / Consumer ID"],
+            timeline: "Instant Receipt",
+            fee: "Bill Amount + ₹15 Service Charge",
+            portalUrl: "https://epay.kwa.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "kwa-new-water-connection",
+            title: "New Water Connection & Ownership Transfer",
+            summary: "Apply online for new KWA domestic water supply connection or name transfer.",
+            documents: ["Aadhaar Card", "Building Ownership Certificate", "Location Sketch"],
+            timeline: "15 – 30 Working Days",
+            fee: "As per KWA Estimate + Service Charge",
+            portalUrl: "https://kwa.kerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 22,
+        slug: "op-ticket-services",
+        title: "OP Ticket Services",
+        icon: "fa-notes-medical",
+        category: "e-Health Kerala",
+        description: "Kerala e-Health online Outpatient (OP) ticket booking for Government Medical Colleges, District & Taluk Hospitals.",
+        children: [
+          {
+            slug: "e-health-op-booking",
+            title: "e-Health Kerala Hospital OP Ticket Booking",
+            summary: "Book advance doctor consultation OP tickets at Kerala Government Hospitals and Medical Colleges without waiting in queues.",
+            documents: ["Aadhaar Card / UHID Number", "Mobile Number for SMS Token"],
+            timeline: "Instant OP Token Print",
+            fee: "₹20 (Service Charge)",
+            portalUrl: "https://ehealth.kerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 23,
+        slug: "government-dept-employment-services",
+        title: "Government Dept Employment Services",
+        icon: "fa-building-shield",
+        category: "PSC & Govt Jobs",
+        description: "Kerala PSC Thulasi One-Time Registration, profile update, post applications, hall tickets, UPSC & SSC filings.",
+        children: [
+          {
+            slug: "kerala-psc-thulasi",
+            title: "Kerala PSC Thulasi Registration & Post Apply",
+            summary: "New One-Time Profile Registration, photo/signature update, exam confirmation, and hall ticket download.",
+            documents: ["Aadhaar Card", "SSLC & Qualification Certificates", "Recent Passport Photo (with Name & Date)", "Signature Specimen"],
+            timeline: "Instant Submission",
+            fee: "₹40 – ₹60",
+            portalUrl: "https://thulasi.psc.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "upsc-ssc-rrb-applications",
+            title: "UPSC, SSC, RRB & Bank Exam Applications",
+            summary: "Online job applications for Central Government recruitments (SSC, Railways, IBPS, UPSC).",
+            documents: ["Aadhaar Card", "Educational Certificates", "Caste/EWS Certificate", "Photo & Signature"],
+            timeline: "Instant Submission",
+            fee: "₹50 + Actual Exam Fee",
+            portalUrl: "https://ssc.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 24,
+        slug: "private-employment-services",
+        title: "Private Employment Services",
+        icon: "fa-user-tie",
+        category: "Career & Placement",
+        description: "National Career Service (NCS) registration, DWMS Kerala Knowledge Economy Mission, and professional resume building.",
+        children: [
+          {
+            slug: "dwms-ncs-job-portal",
+            title: "DWMS Kerala & National Career Service (NCS)",
+            summary: "Register on Kerala Knowledge Economy Mission (DWMS) and NCS portals for verified private sector job drives.",
+            documents: ["Aadhaar Card", "Resume / Bio-data", "Educational & Experience Certificates"],
+            timeline: "Same Day Registration",
+            fee: "₹40",
+            portalUrl: "https://knowledgemission.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "professional-resume-creation",
+            title: "Professional CV / Resume & Cover Letter",
+            summary: "ATS-friendly modern resume creation, formatting, and print/PDF export for domestic and Gulf job applications.",
+            documents: ["Personal, Educational & Work History Details", "Passport Photo"],
+            timeline: "Same Day",
+            fee: "₹50",
+            portalUrl: "https://www.ncs.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 25,
+        slug: "daily-news",
+        title: "Daily News",
+        icon: "fa-newspaper",
+        category: "Public Information",
+        description: "Kerala PRD official press releases, employment news bulletins, and citizen scheme announcements.",
+        children: [
+          {
+            slug: "kerala-prd-bulletins",
+            title: "Kerala PRD Official Press Releases & Bulletins",
+            summary: "Access verified daily news updates from Kerala Information & Public Relations Department (I&PRD).",
+            documents: ["No documents required (Open Citizen Access)"],
+            timeline: "Updated Daily",
+            fee: "Free",
+            portalUrl: "https://prd.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "citizen-scheme-alerts",
+            title: "New Welfare Schemes & Deadline Alerts",
+            summary: "Latest notifications on scholarship deadlines, pension mustering dates, and tax payment extensions.",
+            documents: ["No documents required"],
+            timeline: "Updated Daily",
+            fee: "Free",
+            portalUrl: "https://kerala.gov.in",
+            subServices: []
+          }
+        ]
+      },
+      {
+        id: 26,
+        slug: "government-orders",
+        title: "Government Orders",
+        icon: "fa-scale-balanced",
+        category: "Official Circulars",
+        description: "Search and download official Kerala Government Orders (GOs), circulars, and gazette notifications.",
+        children: [
+          {
+            slug: "kerala-go-search-download",
+            title: "Kerala Government Orders (GO) Search & Print",
+            summary: "Retrieve and print official Government Orders (G.O. Ms / G.O. Rt) across Finance, Revenue, Education, and LSGD departments.",
+            documents: ["GO Number / Date / Department Keyword (if known)"],
+            timeline: "Instant Search & Print",
+            fee: "₹20 (Printing Charges)",
+            portalUrl: "https://go.kerala.gov.in",
+            subServices: []
+          },
+          {
+            slug: "kerala-gazette-notifications",
+            title: "Kerala Gazette Notifications (Name / Religion Change)",
+            summary: "Access official Kerala e-Gazette publications and assistance for Gazette notification applications.",
+            documents: ["Aadhaar Card", "Affidavit & Newspaper Advertisement (for new Gazette filing)"],
+            timeline: "Instant Download / 30 Days for New Publication",
+            fee: "As per Gazette Dept. + Service Charge",
+            portalUrl: "https://compose.kerala.gov.in",
+            subServices: []
+          }
+        ]
+      }
+    ];
+
+    /**
+     * ============================================================================
+     * NAVIGATION STATE & URL HASH ROUTER
+     * ============================================================================
+     */
+    let currentState = {
+      level: 1,            // 1 = Home (26 Parent Services), 2 = Child List, 3 = Leaf Detail
+      parentSlug: null,
+      childSlug: null,
+      searchQuery: ""
+    };
+
+    // Parse URL hash to support browser Back/Forward buttons smoothly
+    function syncStateFromHash() {
+      const rawHash = window.location.hash.replace(/^#/, "");
+      if (!rawHash || rawHash === "home") {
+        currentState.level = 1;
+        currentState.parentSlug = null;
+        currentState.childSlug = null;
+      } else {
+        const parts = rawHash.split("/").filter(Boolean);
+        if (parts.length === 1) {
+          const parentExists = SERVICES_TREE.some(p => p.slug === parts[0]);
+          if (parentExists) {
+            currentState.level = 2;
+            currentState.parentSlug = parts[0];
+            currentState.childSlug = null;
+          } else {
+            currentState.level = 1;
+          }
+        } else if (parts.length >= 2) {
+          const parent = SERVICES_TREE.find(p => p.slug === parts[0]);
+          const child = parent ? parent.children.find(c => c.slug === parts[1]) : null;
+          if (parent && child) {
+            currentState.level = 3;
+            currentState.parentSlug = parent.slug;
+            currentState.childSlug = child.slug;
+          } else if (parent) {
+            currentState.level = 2;
+            currentState.parentSlug = parent.slug;
+            currentState.childSlug = null;
+          } else {
+            currentState.level = 1;
+          }
+        }
+      }
+      renderApp();
+    }
+
+    function navigateHome(e) {
+      if (e) e.preventDefault();
+      window.location.hash = "home";
+    }
+
+    function navigateToParent(parentSlug, e) {
+      if (e) e.preventDefault();
+      window.location.hash = parentSlug;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function navigateToChild(parentSlug, childSlug, e) {
+      if (e) e.preventDefault();
+      window.location.hash = `${parentSlug}/${childSlug}`;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    /**
+     * ============================================================================
+     * BREADCRUMB & BACK BUTTON RENDERER
+     * ============================================================================
+     */
+    function renderBreadcrumbs() {
+      const bcContainer = document.getElementById("breadcrumb-container");
+      const backBtnContainer = document.getElementById("header-back-btn-container");
+
+      const parentObj = SERVICES_TREE.find(p => p.slug === currentState.parentSlug);
+      const childObj = parentObj ? parentObj.children.find(c => c.slug === currentState.childSlug) : null;
+
+      let bcHTML = `
+        <li>
+          <a href="#home" onclick="navigateHome(event)" class="inline-flex items-center gap-1.5 ${currentState.level === 1 ? 'text-akshaya-navy font-bold' : 'text-akshaya-sky hover:underline'}">
+            <i class="fa-solid fa-house text-xs"></i>
+            <span>Home</span>
+          </a>
+        </li>
+      `;
+
+      if (currentState.level >= 2 && parentObj) {
+        bcHTML += `
+          <li class="text-slate-400 select-none"><i class="fa-solid fa-chevron-right text-[10px]"></i></li>
+          <li>
+            <a href="#${parentObj.slug}" onclick="navigateToParent('${parentObj.slug}', event)" class="${currentState.level === 2 ? 'text-akshaya-navy font-bold' : 'text-akshaya-sky hover:underline'}">
+              ${parentObj.id}. ${parentObj.title}
+            </a>
+          </li>
+        `;
+      }
+
+      if (currentState.level === 3 && parentObj && childObj) {
+        bcHTML += `
+          <li class="text-slate-400 select-none"><i class="fa-solid fa-chevron-right text-[10px]"></i></li>
+          <li class="text-akshaya-navy font-bold truncate max-w-[200px] sm:max-w-xs" title="${childObj.title}">
+            ${childObj.title}
+          </li>
+        `;
+      }
+
+      bcContainer.innerHTML = bcHTML;
+
+      // Contextual Back Button
+      if (currentState.level === 2) {
+        backBtnContainer.innerHTML = `
+          <a href="#home" onclick="navigateHome(event)" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-semibold shadow-sm transition-colors">
+            <i class="fa-solid fa-arrow-left text-[11px]"></i> Back to All Services
+          </a>
+        `;
+      } else if (currentState.level === 3 && parentObj) {
+        backBtnContainer.innerHTML = `
+          <a href="#${parentObj.slug}" onclick="navigateToParent('${parentObj.slug}', event)" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-semibold shadow-sm transition-colors">
+            <i class="fa-solid fa-arrow-left text-[11px]"></i> Back to ${parentObj.title}
+          </a>
+        `;
+      } else {
+        backBtnContainer.innerHTML = `
+          <span class="text-xs text-slate-500 hidden sm:inline-flex items-center gap-1.5">
+            <i class="fa-solid fa-sitemap text-akshaya-emerald"></i> 26 Service Categories Available
+          </span>
+        `;
+      }
+    }
+
+    /**
+     * ============================================================================
+     * LEVEL 1 VIEW: HOME / 26 PARENT SERVICES DIRECTORY
+     * ============================================================================
+     */
+    function renderLevel1Home() {
+      const root = document.getElementById("app-root");
+      const query = currentState.searchQuery.trim().toLowerCase();
+
+      const filteredServices = SERVICES_TREE.filter(service => {
+        if (!query) return true;
+        const matchesParent =
+          service.title.toLowerCase().includes(query) ||
+          service.category.toLowerCase().includes(query) ||
+          String(service.id) === query;
+        const matchesChild = service.children.some(c => c.title.toLowerCase().includes(query));
+        return matchesParent || matchesChild;
+      });
+
+      const cardsHTML = filteredServices.map(service => `
+        <a href="#${service.slug}"
+           onclick="navigateToParent('${service.slug}', event)"
+           class="service-card group bg-white rounded-2xl border border-slate-200 hover:border-akshaya-sky/50 p-5 shadow-sm hover:shadow-lg flex items-start gap-4 focus:outline-none focus:ring-2 focus:ring-akshaya-sky">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 text-akshaya-sky group-hover:bg-akshaya-sky group-hover:text-white flex items-center justify-center text-xl transition-colors shrink-0">
+            <i class="fa-solid ${service.icon}"></i>
+          </div>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-base font-bold text-akshaya-navy leading-snug">${service.title}</h3>
+            <p class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">${service.description}</p>
+            <p class="mt-3 text-[11px] font-semibold text-slate-400">${service.children.length} services &middot; ${service.category}</p>
+          </div>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-akshaya-sky group-hover:translate-x-0.5 transition mt-1.5"></i>
+        </a>
+      `).join("");
+
+      root.innerHTML = `
+        <div class="view-animate space-y-6">
+          <!-- Hero & Search -->
+          <section class="text-center max-w-2xl mx-auto pt-2 sm:pt-6">
+            <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-akshaya-navy">
+              Select a Service Category
+            </h2>
+            <p class="text-sm sm:text-base text-slate-500 mt-3 leading-relaxed">
+              Browse services, check required documents and fees, and apply at your Akshaya Centre.
+            </p>
+            <div class="mt-6 relative">
+              <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-400">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <input
+                type="text"
+                id="service-search-input"
+                value="${escapeHtml(currentState.searchQuery)}"
+                oninput="handleSearchInput(this.value)"
+                placeholder="Search e.g. Aadhaar, Income Certificate, Passport, KSEB..."
+                class="w-full pl-12 pr-12 py-4 rounded-full bg-white border border-slate-200 text-slate-800 placeholder-slate-400 text-sm font-medium shadow-md focus:outline-none focus:ring-2 focus:ring-akshaya-sky focus:border-akshaya-sky"
+              />
+              ${currentState.searchQuery ? `
+                <button onclick="clearSearch()" class="absolute inset-y-0 right-0 pr-5 flex items-center text-slate-400 hover:text-slate-700" title="Clear search">
+                  <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+              ` : ''}
+            </div>
+          </section>
+
+          <!-- Results count -->
+          <div class="flex items-center justify-between gap-2 pt-2">
+            <p class="text-sm font-semibold text-slate-500">
+              Showing ${filteredServices.length} of ${SERVICES_TREE.length} services
+            </p>
+            ${currentState.searchQuery ? `
+              <button onclick="clearSearch()" class="text-xs font-semibold text-akshaya-sky hover:underline">Reset</button>
+            ` : ''}
+          </div>
+
+          <!-- 26 Parent Services Grid -->
+          ${filteredServices.length > 0 ? `
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+              ${cardsHTML}
+            </div>
+          ` : `
+            <div class="bg-white rounded-2xl border border-slate-200 p-10 text-center">
+              <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3 text-xl">
+                <i class="fa-solid fa-folder-open"></i>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">No matching services found</h3>
+              <p class="text-xs text-slate-500 mt-1">Try searching with a different keyword or reset the search filter.</p>
+              <button onclick="clearSearch()" class="mt-4 px-4 py-2 rounded-xl bg-akshaya-sky text-white text-xs font-semibold hover:bg-akshaya-blue">
+                Show All 26 Services
+              </button>
+            </div>
+          `}
+        </div>
+      `;
+
+      // Restore cursor focus if user was typing
+      if (document.activeElement && document.activeElement.id === "service-search-input") {
+        const inputEl = document.getElementById("service-search-input");
+        inputEl.focus();
+        inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
+      }
+    }
+
+    /**
+     * ============================================================================
+     * LEVEL 2 VIEW: CHILD SERVICES LIST PAGE
+     * ============================================================================
+     */
+    function renderLevel2ChildList() {
+      const root = document.getElementById("app-root");
+      const parentObj = SERVICES_TREE.find(p => p.slug === currentState.parentSlug);
+
+      if (!parentObj) {
+        navigateHome();
+        return;
+      }
+
+      const childLinksHTML = parentObj.children.map((child, index) => `
+        <a href="#${parentObj.slug}/${child.slug}"
+           onclick="navigateToChild('${parentObj.slug}', '${child.slug}', event)"
+           class="service-card group bg-white rounded-2xl border border-slate-200 hover:border-akshaya-emerald p-4 sm:p-5 shadow-sm hover:shadow-md flex items-center justify-between gap-4">
+          <div class="flex items-start sm:items-center gap-3.5 min-w-0">
+            <span class="w-8 h-8 rounded-xl bg-emerald-50 text-akshaya-emerald group-hover:bg-akshaya-emerald group-hover:text-white font-bold text-xs flex items-center justify-center shrink-0 transition-colors">
+              ${index + 1}
+            </span>
+            <div class="min-w-0">
+              <h3 class="text-base font-bold text-akshaya-navy group-hover:text-akshaya-emerald transition-colors leading-snug">
+                ${child.title}
+              </h3>
+              <p class="text-xs text-slate-500 mt-1 line-clamp-2">
+                ${child.summary}
+              </p>
+              <div class="flex flex-wrap items-center gap-3 mt-2 text-[11px] font-medium text-slate-500">
+                <span class="inline-flex items-center gap-1"><i class="fa-regular fa-clock text-akshaya-sky"></i> ${child.timeline}</span>
+                <span class="inline-flex items-center gap-1"><i class="fa-solid fa-indian-rupee-sign text-amber-600"></i> ${child.fee}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="shrink-0 w-9 h-9 rounded-full bg-slate-100 group-hover:bg-akshaya-emerald group-hover:text-white text-slate-500 flex items-center justify-center transition-colors">
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+          </div>
+        </a>
+      `).join("");
+
+      root.innerHTML = `
+        <div class="view-animate space-y-6">
+          <!-- Parent Service Header Banner -->
+          <section class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-7 shadow-sm">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-akshaya-navy to-akshaya-sky text-white flex items-center justify-center text-xl sm:text-2xl shrink-0 shadow-sm">
+                  <i class="fa-solid ${parentObj.icon}"></i>
+                </div>
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-akshaya-blue text-xs font-bold">
+                      Service #${parentObj.id} • ${parentObj.category}
+                    </span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-akshaya-emerald text-xs font-semibold">
+                      ${parentObj.children.length} Sub-Services
+                    </span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-extrabold text-akshaya-navy mt-1.5">
+                    ${parentObj.title}
+                  </h2>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-3xl">
+                    ${parentObj.description}
+                  </p>
+                </div>
+              </div>
+
+              <div class="shrink-0">
+                <a href="#home" onclick="navigateHome(event)" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-akshaya-navy text-xs sm:text-sm font-semibold transition-colors">
+                  <i class="fa-solid fa-table-cells-large"></i> All 26 Services
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Child Services List -->
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-akshaya-navy mb-3.5 flex items-center gap-2">
+              <span class="w-1.5 h-5 rounded-full bg-akshaya-sky inline-block"></span>
+              Select a Service under ${parentObj.title}
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${childLinksHTML}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    /**
+     * ============================================================================
+     * LEVEL 3 VIEW: GRANDCHILD / LEAF SERVICE DETAIL & FUTURE TREE NODE
+     * ============================================================================
+     */
+    function renderLevel3ChildDetail() {
+      const root = document.getElementById("app-root");
+      const parentObj = SERVICES_TREE.find(p => p.slug === currentState.parentSlug);
+      const childObj = parentObj ? parentObj.children.find(c => c.slug === currentState.childSlug) : null;
+
+      if (!parentObj || !childObj) {
+        navigateHome();
+        return;
+      }
+
+      const docsHTML = childObj.documents.map(doc => `
+        <li class="flex items-start gap-2.5 text-sm text-slate-700">
+          <i class="fa-solid fa-circle-check text-akshaya-emerald mt-1 shrink-0"></i>
+          <span>${doc}</span>
+        </li>
+      `).join("");
+
+      // Sibling quick-links so citizen can switch easily within the same parent category
+      const siblingLinksHTML = parentObj.children.map(sib => {
+        const isActive = sib.slug === childObj.slug;
+        return `
+          <a href="#${parentObj.slug}/${sib.slug}"
+             onclick="navigateToChild('${parentObj.slug}', '${sib.slug}', event)"
+             class="block px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-colors ${
+               isActive
+                 ? 'bg-akshaya-navy text-white shadow-sm'
+                 : 'text-slate-700 hover:bg-slate-100'
+             }">
+            <div class="flex items-center justify-between gap-2">
+              <span class="truncate">${sib.title}</span>
+              ${isActive ? '<i class="fa-solid fa-circle text-[7px] text-amber-400"></i>' : ''}
+            </div>
+          </a>
+        `;
+      }).join("");
+
+      root.innerHTML = `
+        <div class="view-animate grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Main Service Detail Card (2 Columns on Desktop) -->
+          <div class="lg:col-span-2 space-y-6">
+            <section class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-7 shadow-sm">
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-akshaya-blue text-xs font-bold">
+                  ${parentObj.id}. ${parentObj.title}
+                </span>
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 text-xs font-semibold">
+                  Akshaya Assisted Service
+                </span>
+              </div>
+
+              <h2 class="text-xl sm:text-2xl font-extrabold text-akshaya-navy">
+                ${childObj.title}
+              </h2>
+              <p class="text-sm text-slate-600 mt-2.5 leading-relaxed">
+                ${childObj.summary}
+              </p>
+
+              <!-- Key Metrics: Timeline & Fee -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-6">
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-blue-100 text-akshaya-sky flex items-center justify-center text-base shrink-0">
+                    <i class="fa-regular fa-clock"></i>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Estimated Processing</div>
+                    <div class="text-sm font-bold text-akshaya-navy mt-0.5">${childObj.timeline}</div>
+                  </div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-100 text-akshaya-emerald flex items-center justify-center text-base shrink-0">
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Fee / Service Charge</div>
+                    <div class="text-sm font-bold text-akshaya-navy mt-0.5">${childObj.fee}</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Required Documents Checklist -->
+              <div class="mt-6 pt-6 border-t border-slate-100">
+                <h3 class="text-base font-bold text-akshaya-navy mb-3 flex items-center gap-2">
+                  <i class="fa-solid fa-folder-open text-akshaya-sky"></i>
+                  Required Documents Checklist
+                </h3>
+                <ul class="space-y-2.5 bg-slate-50/70 rounded-xl p-4 border border-slate-200/70">
+                  ${docsHTML}
+                </ul>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="mt-6 pt-6 border-t border-slate-100 flex flex-wrap items-center gap-3">
+                <button onclick="openEnquiryModal('${escapeHtml(parentObj.title + " → " + childObj.title)}')"
+                        class="px-5 py-3 rounded-xl bg-akshaya-emerald hover:bg-emerald-800 text-white text-sm font-bold shadow-sm transition-colors inline-flex items-center gap-2">
+                  <i class="fa-solid fa-file-signature"></i> Enquire / Apply at Centre
+                </button>
+
+                <a href="${childObj.portalUrl}" target="_blank" rel="noopener noreferrer"
+                   class="px-5 py-3 rounded-xl bg-white border border-slate-300 hover:border-akshaya-sky hover:text-akshaya-sky text-slate-700 text-sm font-semibold transition-colors inline-flex items-center gap-2">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Official Dept. Portal
+                </a>
+              </div>
+            </section>
+
+            
+          </div>
+
+          <!-- Right Sidebar: Sibling Services in Same Parent Category -->
+          <aside class="space-y-4">
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm">
+              <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                <h3 class="text-sm font-bold text-akshaya-navy">
+                  More in ${parentObj.title}
+                </h3>
+                <span class="text-xs font-semibold text-slate-400">${parentObj.children.length}</span>
+              </div>
+              <div class="space-y-1">
+                ${siblingLinksHTML}
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100">
+                <a href="#${parentObj.slug}" onclick="navigateToParent('${parentObj.slug}', event)" class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-semibold text-slate-700 transition-colors">
+                  <i class="fa-solid fa-arrow-left"></i> Back to ${parentObj.title}
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      `;
+    }
+
+    /**
+     * ============================================================================
+     * MASTER RENDER & INTERACTION HANDLERS
+     * ============================================================================
+     */
+    function renderApp() {
+      renderBreadcrumbs();
+      if (currentState.level === 1) {
+        renderLevel1Home();
+      } else if (currentState.level === 2) {
+        renderLevel2ChildList();
+      } else if (currentState.level === 3) {
+        renderLevel3ChildDetail();
+      }
+    }
+
+    function handleSearchInput(val) {
+      currentState.searchQuery = val;
+      renderLevel1Home();
+    }
+
+    function clearSearch() {
+      currentState.searchQuery = "";
+      renderLevel1Home();
+    }
+
+
+    /**
+     * ============================================================================
+     * AKSHAYA CENTRES DIRECTORY  (EDIT THIS LIST)
+     * ----------------------------------------------------------------------------
+     * Add each centre under its district:
+     *   { name: "Centre name / place", whatsapp: "91XXXXXXXXXX" }
+     * whatsapp = country code 91 + 10-digit mobile, digits only (a plain 10-digit
+     * number also works). Centres with an invalid number cannot receive messages.
+     * The two Palakkad entries below are SAMPLES with placeholder numbers.
+     * ============================================================================
+     */
+    const AKSHAYA_CENTRES = {
+      "Thiruvananthapuram": [],
+      "Kollam": [],
+      "Pathanamthitta": [],
+      "Alappuzha": [],
+      "Kottayam": [],
+      "Idukki": [],
+      "Ernakulam": [],
+      "Thrissur": [],
+      "Palakkad": [
+        { name: "Sample Akshaya Centre – Ottapalam (replace me)", whatsapp: "91XXXXXXXXXX" },
+        { name: "Sample Akshaya Centre – Palakkad Town (replace me)", whatsapp: "91XXXXXXXXXX" }
+      ],
+      "Malappuram": [],
+      "Kozhikode": [],
+      "Wayanad": [],
+      "Kannur": [],
+      "Kasaragod": []
+    };
+
+    function normalizeWhatsapp(num) {
+      let d = String(num || "").replace(/\D/g, "");
+      if (d.length === 10) d = "91" + d;
+      return /^91[6-9]\d{9}$/.test(d) ? d : null;
+    }
+
+    function populateDistricts() {
+      const dSel = document.getElementById("citizen-district");
+      dSel.innerHTML = '<option value="">Select district</option>' +
+        Object.keys(AKSHAYA_CENTRES).map(d => `<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`).join("");
+      onDistrictChange();
+    }
+
+    function onDistrictChange() {
+      const district = document.getElementById("citizen-district").value;
+      const cSel = document.getElementById("citizen-centre");
+      const list = AKSHAYA_CENTRES[district] || [];
+      if (!district) {
+        cSel.innerHTML = '<option value="">Select a district first</option>';
+        cSel.disabled = true;
+      } else if (list.length === 0) {
+        cSel.innerHTML = '<option value="">No centres added for this district yet</option>';
+        cSel.disabled = true;
+      } else {
+        cSel.innerHTML = '<option value="">Select Akshaya Centre</option>' +
+          list.map((c, i) => `<option value="${i}">${escapeHtml(c.name)}</option>`).join("");
+        cSel.disabled = false;
+      }
+    }
+
+    // Modal Functions
+    function openEnquiryModal(serviceLabel) {
+      const modal = document.getElementById("enquiry-modal");
+      const serviceInput = document.getElementById("modal-service-name");
+      const feedback = document.getElementById("enquiry-feedback");
+      serviceInput.value = serviceLabel;
+      populateDistricts();
+      feedback.classList.add("hidden");
+      feedback.textContent = "";
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeEnquiryModal() {
+      const modal = document.getElementById("enquiry-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    function handleEnquirySubmit(e) {
+      e.preventDefault();
+      const service  = document.getElementById("modal-service-name").value;
+      const name     = document.getElementById("citizen-name").value.trim();
+      const phone    = document.getElementById("citizen-phone").value.trim();
+      const notes    = document.getElementById("citizen-notes").value.trim();
+      const district = document.getElementById("citizen-district").value;
+      const centre   = (AKSHAYA_CENTRES[district] || [])[document.getElementById("citizen-centre").value];
+      const feedback = document.getElementById("enquiry-feedback");
+      const setFeedback = (html, ok) => {
+        feedback.className = "rounded-xl p-3 text-xs font-medium border " + (ok
+          ? "bg-emerald-50 border-emerald-200 text-emerald-800"
+          : "bg-red-50 border-red-200 text-red-700");
+        feedback.innerHTML = html;
+      };
+
+      const waNumber = centre ? normalizeWhatsapp(centre.whatsapp) : null;
+      if (!centre || !waNumber) {
+        setFeedback('<i class="fa-solid fa-triangle-exclamation mr-1.5"></i>This centre has no valid WhatsApp number configured yet. Please choose another centre.', false);
+        return;
+      }
+
+      const refId = "AKS-" + Math.floor(100000 + Math.random() * 900000);
+      const message =
+        "*Akshaya Service Request* (" + refId + ")\n" +
+        "Service: " + service + "\n" +
+        "Name: " + name + "\n" +
+        "Mobile: " + phone + "\n" +
+        "District: " + district + "\n" +
+        "Centre: " + centre.name + "\n" +
+        "Details / Query: " + (notes || "-");
+      const waUrl = "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(message);
+
+      window.open(waUrl, "_blank", "noopener");
+
+      setFeedback(
+        '<i class="fa-solid fa-circle-check mr-1.5"></i>Thank you, <strong>' + escapeHtml(name) + '</strong>! WhatsApp has been opened with your request (Ref: <strong>' + refId + '</strong>) for <strong>' + escapeHtml(centre.name) + '</strong>. Press <strong>Send</strong> in WhatsApp to deliver it. ' +
+        '<a href="' + waUrl + '" target="_blank" rel="noopener noreferrer" class="underline font-semibold">WhatsApp didn\'t open? Tap here.</a>',
+        true
+      );
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Initialize Application
+    window.addEventListener("hashchange", syncStateFromHash);
+    window.addEventListener("DOMContentLoaded", () => {
+      syncStateFromHash();
+    });
+  </script>
+</body>
+</html>
